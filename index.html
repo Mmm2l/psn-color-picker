@@ -22,13 +22,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
     }
     input[type="color"] {
       -webkit-appearance: none;
       border: none;
-      width: 150px;
-      height: 150px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       cursor: pointer;
       background: none;
@@ -40,20 +40,16 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
     button {
-      padding: 14px 36px;
-      font-size: 18px;
+      padding: 12px 30px;
+      font-size: 16px;
       font-weight: bold;
       color: #ffffff;
       background-color: #0088cc;
       border: none;
-      border-radius: 14px;
+      border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,136,204,0.3);
     }
-    button:active {
-      transform: scale(0.96);
-      background-color: #006699;
-    }
+    button:active { transform: scale(0.96); }
   </style>
 </head>
 <body>
@@ -66,21 +62,14 @@
 
   <script>
     const tg = window.Telegram.WebApp;
-
-    // تهيئة الواجهة داخل تليجرام
     tg.ready();
     tg.expand();
 
-    const colorPicker = document.getElementById('colorPicker');
-    const submitBtn = document.getElementById('submitBtn');
-
-    submitBtn.addEventListener('click', function() {
-      const selectedColor = colorPicker.value;
+    document.getElementById('submitBtn').addEventListener('click', function() {
+      const selectedColor = document.getElementById('colorPicker').value;
       
-      // إرسال البيانات للبوت
+      // إرسال البيانات
       tg.sendData(selectedColor);
-      
-      // إغلاق النافذة فوراً
       tg.close();
     });
   </script>
