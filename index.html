@@ -69,8 +69,14 @@
     document.getElementById('submitBtn').addEventListener('click', function() {
       const selectedColor = document.getElementById('colorPicker').value;
       
-      // إرسال كود اللون مباشرة إلى البوت عبر حدث WEB_APP_DATA
-      tg.sendData(selectedColor);
+      // إرسال مباشر إذا كانت الميزة مدعومة في الجلسة
+      try {
+        tg.sendData(selectedColor);
+      } catch (e) {}
+
+      // إغلاق الواجهة وتوجيه النص تلقائياً للشات عبر الـ Inline Query
+      tg.switchInlineQuery(selectedColor);
+      tg.close();
     });
   </script>
 </body>
