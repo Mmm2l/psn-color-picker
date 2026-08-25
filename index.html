@@ -39,7 +39,7 @@
       border-radius: 50%;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
-    button {
+    .btn {
       padding: 12px 30px;
       font-size: 16px;
       font-weight: bold;
@@ -48,9 +48,9 @@
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      transition: background-color 0.2s, transform 0.1s;
+      outline: none;
     }
-    button:active { transform: scale(0.96); }
+    .btn:active { transform: scale(0.96); }
   </style>
 </head>
 <body>
@@ -58,7 +58,7 @@
   <div class="container">
     <h2>اختر لون البروفايل 🎨</h2>
     <input type="color" id="colorPicker" value="#003791">
-    <button type="button" id="submitBtn">تأكيد اللون</button>
+    <button class="btn" id="submitBtn">تأكيد اللون</button>
   </div>
 
   <script>
@@ -66,17 +66,18 @@
     tg.ready();
     tg.expand();
 
-    document.getElementById('submitBtn').addEventListener('click', function() {
+    const submitBtn = document.getElementById('submitBtn');
+
+    submitBtn.addEventListener('click', function() {
       const selectedColor = document.getElementById('colorPicker').value;
       
-      // إرسال مباشر إذا كانت الميزة مدعومة في الجلسة
-      try {
-        tg.sendData(selectedColor);
-      } catch (e) {}
-
-      // إغلاق الواجهة وتوجيه النص تلقائياً للشات عبر الـ Inline Query
+      // توجيه كود اللون مباشرة لخيار الإينلاين
       tg.switchInlineQuery(selectedColor);
-      tg.close();
+      
+      // تأخير بسيط لإغلاق النافذة لضمان تنفيذ التوجيه
+      setTimeout(() => {
+        tg.close();
+      }, 150);
     });
   </script>
 </body>
