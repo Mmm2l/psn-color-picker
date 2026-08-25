@@ -48,6 +48,7 @@
       border: none;
       border-radius: 12px;
       cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
     }
     button:active { transform: scale(0.96); }
   </style>
@@ -68,9 +69,8 @@
     document.getElementById('submitBtn').addEventListener('click', function() {
       const selectedColor = document.getElementById('colorPicker').value;
       
-      // إغلاق الـ WebApp وتوجيه كود اللون كرسالة إلى الشات تلقائياً
-      tg.switchInlineQuery(selectedColor, ['users']);
-      tg.close();
+      // إرسال كود اللون مباشرة إلى البوت عبر حدث WEB_APP_DATA
+      tg.sendData(selectedColor);
     });
   </script>
 </body>
