@@ -25,8 +25,9 @@
     margin:0;
     height:100%;
     background:
-      radial-gradient(circle at 50% 18%, rgba(var(--ring-glow),0.16), transparent 55%),
-      radial-gradient(circle at 15% 85%, rgba(var(--ring-glow),0.08), transparent 50%),
+      radial-gradient(circle at 50% 18%, rgba(var(--ring-glow),0.28), transparent 55%),
+      radial-gradient(circle at 15% 85%, rgba(var(--ring-glow),0.16), transparent 50%),
+      radial-gradient(circle at 90% 75%, rgba(var(--ring-glow),0.10), transparent 45%),
       var(--bg);
     background-attachment:fixed;
     transition: background 0.6s ease;
@@ -278,14 +279,21 @@
     justify-content:center;
     gap:8px;
     text-decoration:none;
-    background:rgba(255,255,255,0.04);
-    border:1px solid rgba(255,255,255,0.08);
+    background:rgba(10,14,21,0.92);
     border-radius:999px;
     padding:8px 16px;
-    opacity:.9;
-    transition:opacity .15s ease, background .15s ease;
+    opacity:.95;
+    border:1px solid rgba(255,255,255,0.12);
+    transition:opacity .15s ease, transform .15s ease;
+    animation: creditGlow 3.6s ease-in-out infinite;
   }
-  .credit:active{ opacity:1; background:rgba(255,255,255,0.08); }
+  @keyframes creditGlow{
+    0%   { box-shadow:0 0 14px rgba(46,166,255,0.55),  0 0 28px rgba(46,166,255,0.25); border-color:rgba(46,166,255,0.5); }
+    33%  { box-shadow:0 0 14px rgba(183,108,255,0.55), 0 0 28px rgba(183,108,255,0.25); border-color:rgba(183,108,255,0.5); }
+    66%  { box-shadow:0 0 14px rgba(255,77,141,0.55),  0 0 28px rgba(255,77,141,0.25); border-color:rgba(255,77,141,0.5); }
+    100% { box-shadow:0 0 14px rgba(46,166,255,0.55),  0 0 28px rgba(46,166,255,0.25); border-color:rgba(46,166,255,0.5); }
+  }
+  .credit:active{ opacity:1; transform:translateX(-50%) scale(.97); }
 
   .credit svg{ width:15px; height:15px; flex:none; }
 
@@ -304,6 +312,7 @@
   @media (prefers-reduced-motion: reduce){
     .ring-wrap svg{ animation:none; }
     .ring-wrap .pulse{ animation:none; }
+    .credit{ animation:none; box-shadow:0 0 14px rgba(46,166,255,0.4); }
   }
 
   /* ── تنبيه احتياطي عند فشل النسخ التلقائي ── */
@@ -365,11 +374,11 @@
 
   <div class="toast" id="toast"></div>
 
-  <a class="credit" href="https://t.me/Y33ME" id="creditLink">
+  <a class="credit" href="https://t.me/YRBEE" id="creditLink">
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M21.5 3.5L2.75 10.9c-1.15.46-1.14 1.1-.2 1.39l4.8 1.5 1.85 5.66c.22.6.37.84.78.84.37 0 .53-.17.73-.37l1.98-1.9 4.14 3.05c.76.42 1.31.2 1.5-.7l2.73-12.7c.28-1.16-.44-1.68-1.61-1.17z" fill="currentColor" style="color:var(--blue-soft)"/>
     </svg>
-    <span class="label">PS HUB × <b>@Y33ME</b></span>
+    <span class="label">PS HUB × <b>@YRBEE</b></span>
   </a>
 
 <script>
@@ -524,8 +533,8 @@
   // فتح رابط الحقوق داخل تيليجرام نفسه بدل متصفح خارجي
   creditLink.addEventListener('click', function(e){
     e.preventDefault();
-    if (tg.openTelegramLink) tg.openTelegramLink('https://t.me/Y33ME');
-    else window.open('https://t.me/Y33ME', '_blank');
+    if (tg.openTelegramLink) tg.openTelegramLink('https://t.me/YRBEE');
+    else window.open('https://t.me/YRBEE', '_blank');
   });
 </script>
 </body>
